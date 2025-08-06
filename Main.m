@@ -25,38 +25,9 @@ dt = 0.1;   % Time step
 K = place(A, B, repmat([-1 -2], 1, 2*n));  % Stabilizing gain 
 
 [xv_desired,xv0] = generateInitialAndDesiredPositions(n,5);
-% xv0 = [5;0; 
-%    -0.86*0.9
-%     0.42*0.9
-%     1.43*0.9
-%    -0.88*0.9
-%     1.17*0.9
-%     1.17*0.9
-%    -0.69*0.9
-%    -0.76*0.9
-% 0
-% 0
-% 0
-% 0
-% 0
-% 0
-% 0
-% 0
-% 0
-% 0];
+
 xv_desired(1:2*n) = xv_desired(1:2*n);% + -0.1+0.2*rand(2*n,1);
-% xv_desired = zeros(4*n,1);
-% xv_desired(1:2) = [-5;1];
-% xv_desired(3:10) = xv0(3:10);
-xv0 = [5
-0
-0
--5
-0
-0
-0
-0];
-xv_desired = [-5;0;0;5;0;0;0;0];
+
 %% Initialize the figure and subplots
 [plt, sct_plt, plt_title] = initializePlots(xv0, n);
 axis([  -5.0910    5.1000   -4.0692    4.5043])
@@ -106,4 +77,5 @@ LegendGenerator(n)
 % The command below can be used to view the positions of agents and their
 % velocity vectors at a specific 'time'.
 % Example Command:   plot_single_timestep(n,xv_store,time_vec,3)
+
 
