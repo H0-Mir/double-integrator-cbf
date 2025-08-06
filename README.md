@@ -1,6 +1,6 @@
-# 🧠 Multi-Agent Simulation with Control Barrier Functions
+# Multi-Agent Simulation with Control Barrier Functions
 
-This repository contains a MATLAB simulation of multiple agents modeled as **double integrators** navigating in a shared space while **avoiding collisions using Control Barrier Functions (CBFs)**. The simulation is inspired by the work of Wang, Ames, and Egerstedt (2017) and implements a **quadratic program (QP)** based controller that blends nominal trajectory tracking with safety guarantees.
+This repository contains a MATLAB simulation of multiple agents modeled as **double integrators** navigating in a shared space while **avoiding collisions using Control Barrier Functions (CBFs)**. The simulation is based on the work of Wang, Ames, and Egerstedt (2017) and implements a **quadratic program (QP)** based controller that blends nominal trajectory tracking with safety guarantees.
 
 ---
 
@@ -11,6 +11,7 @@ Each agent \(i\) is modeled by the following second-order dynamics:
 $$
 \ddot{\mathbf{p}}_i = \mathbf{u}_i
 $$
+<img width="100" height="33" alt="image" src="https://github.com/user-attachments/assets/fff29b85-25db-4420-bb65-8fc2ff834fbc" />
 
 - $\mathbf{p}_i \in \mathbb{R}^2$: position  
 - $\mathbf{v}_i \in \mathbb{R}^2$: velocity  
@@ -23,18 +24,7 @@ $$
 $$
 
 State-space representation:
-$$\begin{bmatrix}\dot{\mathbf{p}}_i \\ \dot{\mathbf{v}}_i \end{bmatrix}
-	=
-	\begin{bmatrix}
-		\mathbf{0}  & \mathbf{I} \\
-		\mathbf{0}  & \mathbf{0} 
-	\end{bmatrix}
-	\begin{bmatrix}\mathbf{p}_i \\ \mathbf{v}_i \end{bmatrix}+
-	\begin{bmatrix}
-		\mathbf{0} \\
-		\mathbf{I}
-	\end{bmatrix}
-	\mathbf{u}_i$$
+    [ ṗ_i ; v̇_i ] = [ 0  I ; 0  0 ] [ p_i ; v_i ] + [ 0 ; I ] u_i
 
 ---
 
@@ -66,10 +56,10 @@ h_{ij}(\mathbf{p}, \mathbf{v}) =
 $$
 
 Where:
-- \( \Delta \mathbf{p}_{ij} = \mathbf{p}_i - \mathbf{p}_j \)
-- \( \Delta \mathbf{v}_{ij} = \mathbf{v}_i - \mathbf{v}_j \)
-- \( \alpha_{sum} = \alpha_i + \alpha_j \): combined braking acceleration
-- \( D_s \): safety distance
+- $\Delta \mathbf{p}_{ij} = \mathbf{p}_i - \mathbf{p}_j$
+- $\Delta \mathbf{v}_{ij} = \mathbf{v}_i - \mathbf{v}_j$
+- $\alpha_{sum} = \alpha_i + \alpha_j$: combined braking acceleration
+- $D_s$: safety distance
 
 Agents are kept in the **safe set**:
 
@@ -97,31 +87,27 @@ $$
 $$
 
 Where:
-- \( \hat{\mathbf{u}}_i \): nominal control from the feedback controller
-- \( \mathbf{A}_{ij} = -L_g h(x) \)
-- \( \mathbf{b}_{ij} = L_f h(x) + \gamma h^3(x) \)
+- $\hat{\mathbf{u}}_i$: nominal control from the feedback controller
+- $\mathbf{A}_{ij} = -L_g h(x)$
+- $\mathbf{b}_{ij} = L_f h(x) + \gamma h^3(x)$
 
 This formulation ensures **minimal deviation from the nominal control** while satisfying all **safety constraints**.
 
 ---
 
-## 📚 Reference
+## Reference
 
 Wang, L., Ames, A. D., & Egerstedt, M. (2017).  
 “**Safety barrier certificates for collision-free multi-robot systems**,”  
 *IEEE Transactions on Robotics*, 33(3), 661–674.  
-[DOI: 10.1109/TRO.2017.2659725](https://doi.org/10.1109/TRO.2017.2659725)
+[doi:10.1109/TRO.2017.2659727](https://doi.org/10.1109/TRO.2017.2659727)
 
 ---
 
-## 🛠️ Getting Started
+## Running the Simulation
 
+To run the simulation, open "`Main.m`" and modify the parameter "n" to set the number of agents.
 ### Requirements
 - MATLAB R2021+  
 - Optimization Toolbox (for `quadprog`)  
 - No additional toolboxes required
-
-### Running the Simulation
-To run the simulation, open "Main.m" and modify the parameter "n" to set the number of agents.
-```matlab
-Main.m
