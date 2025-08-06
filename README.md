@@ -25,20 +25,19 @@ $$
 State-space representation:
 
 $$
-\begin{bmatrix}\dot{\mathbf{p}}_i \\ \dot{\mathbf{v}}_i \end{bmatrix}=
-\begin{bmatrix}
-\mathbf{0}  & \mathbf{I} \\
-\mathbf{0}  & \mathbf{0}
-\end{bmatrix}
-\begin{bmatrix}\mathbf{p}_i \\ \mathbf{v}_i \end{bmatrix}
-+
-\begin{bmatrix}
-\mathbf{0} \\
-\mathbf{I}
-\end{bmatrix}
-\mathbf{u}_i
+	\begin{bmatrix}\dot{\mathbf{p}}_i \\ \dot{\mathbf{v}}_i \end{bmatrix}
+	=
+	\begin{bmatrix}
+		\mathbf{0}  & \mathbf{I} \\
+		\mathbf{0}  & \mathbf{0} 
+	\end{bmatrix}
+	\begin{bmatrix}\mathbf{p}_i \\ \mathbf{v}_i \end{bmatrix}+
+	\begin{bmatrix}
+		\mathbf{0} \\
+		\mathbf{I}
+	\end{bmatrix}
+	\mathbf{u}_i
 $$
-
 ---
 
 ## 🎯 Control Design
