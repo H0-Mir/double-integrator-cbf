@@ -1,11 +1,11 @@
 clc; clear; close all;
 
-n = 2; % Number of agents
+n = 6; % Number of agents
 
 %% Safety Barrier function generator
 %%% If the correct "h_calc.m" and "grad_h_calc.m" files are missing,  
 %%% uncomment the line below.  
-barrier_function_generator(n)
+% barrier_function_generator(n)
 
 %% Parameters
 
@@ -19,7 +19,7 @@ D_s = 1;
 gamma = 0.1;
 
 % Simulation Parameters
-t_f = 10;   % Final time
+t_f = 20;   % Final time
 dt = 0.1;   % Time step
 
 K = place(A, B, repmat([-1 -2], 1, 2*n));  % Stabilizing gain 
@@ -30,7 +30,6 @@ xv_desired(1:2*n) = xv_desired(1:2*n);% + -0.1+0.2*rand(2*n,1);
 
 %% Initialize the figure and subplots
 [plt, sct_plt, plt_title] = initializePlots(xv0, n);
-axis([  -5.0910    5.1000   -4.0692    4.5043])
 LegendGenerator2(n)
 
 %% Real-time simulation and plotting
