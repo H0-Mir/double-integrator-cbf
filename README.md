@@ -12,7 +12,8 @@ $$
 \ddot{\mathbf{p}}_i = \mathbf{u}_i
 $$
 
-- $ \mathbf{p}_i \in \mathbb{R}^2 $: position  
+$\mathbf{p}_i \in \mathbb{R}^2$
+: position  
 - \( \mathbf{v}_i \in \mathbb{R}^2 \): velocity  
 - \( \mathbf{u}_i \in \mathbb{R}^2 \): control input (acceleration)  
 
