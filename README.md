@@ -11,7 +11,7 @@ Each agent \(i\) is modeled by the following second-order dynamics:
 $$
 \ddot{\mathbf{p}}_i = \mathbf{u}_i
 $$
-<img width="100" height="33" alt="image" src="https://github.com/user-attachments/assets/fff29b85-25db-4420-bb65-8fc2ff834fbc" />
+
 
 - $\mathbf{p}_i \in \mathbb{R}^2$: position  
 - $\mathbf{v}_i \in \mathbb{R}^2$: velocity  
@@ -19,12 +19,13 @@ $$
 
 The state vector is:
 
-$$
-\mathbf{x}_i = \begin{bmatrix} \mathbf{p}_i \\ \mathbf{v}_i \end{bmatrix} \in \mathbb{R}^4
-$$
+<img width="121" height="43" alt="image" src="https://github.com/user-attachments/assets/91b80404-0aa3-4d2b-b7e8-010c827df3b1" />
+
 
 State-space representation:
-    [ ṗ_i ; v̇_i ] = [ 0  I ; 0  0 ] [ p_i ; v_i ] + [ 0 ; I ] u_i
+
+<img width="228" height="44" alt="image" src="https://github.com/user-attachments/assets/6d8f2f21-dd86-4bcc-8b10-c3bf34014321" />
+
 
 ---
 
@@ -32,14 +33,11 @@ State-space representation:
 
 ### 1. Nominal Feedback Controller
 
-To stabilize each agent around its desired position \( \mathbf{p}_{d,i} \), a **pole-placement** method is used to design the state feedback gain \( \mathbf{K} \in \mathbb{R}^{2 \times 4} \):
+To stabilize each agent around its desired position $\mathbf{p}_{d,i}$, a **pole-placement** method is used to design the state feedback gain $\mathbf{K} \in \mathbb{R}^{2 \times 4}$:
 
-$$
-\mathbf{u}_i = -\mathbf{K} \left(
-\begin{bmatrix} \mathbf{p}_i \\ \mathbf{v}_i \end{bmatrix} -
-\begin{bmatrix} \mathbf{p}_{d,i} \\ \mathbf{0} \end{bmatrix}
-\right)
-$$
+<img width="207" height="44" alt="image" src="https://github.com/user-attachments/assets/93f31379-3fc3-430e-9258-8a9b5988a2ab" />
+
+
 
 The desired closed-loop poles are selected as \( [-1, -2, -1, -2] \) for smooth and stable convergence.
 
@@ -49,11 +47,8 @@ The desired closed-loop poles are selected as \( [-1, -2, -1, -2] \) for smooth 
 
 To prevent inter-agent collisions, a **pairwise safety constraint** is enforced. The CBF for each pair \( (i, j) \) is designed based on the relative dynamics and braking capability:
 
-$$
-h_{ij}(\mathbf{p}, \mathbf{v}) =
-\sqrt{2\alpha_{sum}(\|\Delta \mathbf{p}_{ij}\| - D_s)} +
-\frac{\Delta \mathbf{p}_{ij}^\top}{\|\Delta \mathbf{p}_{ij}\|} \Delta \mathbf{v}_{ij}
-$$
+<img width="393" height="49" alt="image" src="https://github.com/user-attachments/assets/45e0cc58-cc25-48b7-b8ad-483d2ef9dc7d" />
+
 
 Where:
 - $\Delta \mathbf{p}_{ij} = \mathbf{p}_i - \mathbf{p}_j$
@@ -63,9 +58,8 @@ Where:
 
 Agents are kept in the **safe set**:
 
-$$
-\mathcal{C} = \{\mathbf{x} \in \mathbb{R}^4 \mid h_{ij}(\mathbf{p}, \mathbf{v}) \geq 0 \}
-$$
+<img width="220" height="21" alt="image" src="https://github.com/user-attachments/assets/c721cd95-a33f-4072-a48b-30928b5e3659" />
+
 
 The CBF condition (Lie derivative constraint) is enforced as:
 
@@ -79,12 +73,7 @@ $$
 
 To blend **goal tracking** with **safety enforcement**, a **QP-based controller** is formulated:
 
-$$
-\begin{aligned}
-\mathbf{u}^* = \underset{\mathbf{u} \in \mathbb{R}^{2n}}{\operatorname{argmin}} \quad & \sum_{i=1}^N \|\mathbf{u}_i - \hat{\mathbf{u}}_i\|^2 \\
-\text{subject to} \quad & \mathbf{A}_{ij} \mathbf{u}_i \leq \mathbf{b}_{ij}, \quad \forall i \neq j
-\end{aligned}
-$$
+<img width="282" height="78" alt="image" src="https://github.com/user-attachments/assets/5824911e-43d3-4feb-8c31-fd7710817b78" />
 
 Where:
 - $\hat{\mathbf{u}}_i$: nominal control from the feedback controller
@@ -100,7 +89,7 @@ This formulation ensures **minimal deviation from the nominal control** while sa
 Wang, L., Ames, A. D., & Egerstedt, M. (2017).  
 “**Safety barrier certificates for collision-free multi-robot systems**,”  
 *IEEE Transactions on Robotics*, 33(3), 661–674.  
-[doi:10.1109/TRO.2017.2659727](https://doi.org/10.1109/TRO.2017.2659727)
+[DOI: 10.1109/TRO.2017.2659727](https://doi.org/10.1109/TRO.2017.2659727)
 
 ---
 
