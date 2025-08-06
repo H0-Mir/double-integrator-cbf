@@ -72,7 +72,62 @@ $$
 Where:
 - \( \Delta \mathbf{p}_{ij} = \mathbf{p}_i - \mathbf{p}_j \)
 - \( \Delta \mathbf{v}_{ij} = \mathbf{v}_i - \mathbf{v}_j \)
-- \( \alpha_{sum} = \alpha_i + \alpha_j \): combined braking_
+- \( \alpha_{sum} = \alpha_i + \alpha_j \): combined braking acceleration
+- \( D_s \): safety distance
+
+Agents are kept in the **safe set**:
+
+$$
+\mathcal{C} = \{\mathbf{x} \in \mathbb{R}^4 \mid h_{ij}(\mathbf{p}, \mathbf{v}) \geq 0 \}
+$$
+
+The CBF condition (Lie derivative constraint) is enforced as:
+
+$$
+L_f h(x) + L_g h(x) u + \gamma h^3(x) \geq 0
+$$
+
+---
+
+### 3. Quadratic Programming Controller
+
+To blend **goal tracking** with **safety enforcement**, a **QP-based controller** is formulated:
+
+$$
+\begin{aligned}
+\mathbf{u}^* = \underset{\mathbf{u} \in \mathbb{R}^{2n}}{\operatorname{argmin}} \quad & \sum_{i=1}^N \|\mathbf{u}_i - \hat{\mathbf{u}}_i\|^2 \\
+\text{subject to} \quad & \mathbf{A}_{ij} \mathbf{u}_i \leq \mathbf{b}_{ij}, \quad \forall i \neq j
+\end{aligned}
+$$
+
+Where:
+- \( \hat{\mathbf{u}}_i \): nominal control from the feedback controller
+- \( \mathbf{A}_{ij} = -L_g h(x) \)
+- \( \mathbf{b}_{ij} = L_f h(x) + \gamma h^3(x) \)
+
+This formulation ensures **minimal deviation from the nominal control** while satisfying all **safety constraints**.
+
+---
+
+## 📚 Reference
+
+Wang, L., Ames, A. D., & Egerstedt, M. (2017).  
+“**Safety barrier certificates for collision-free multi-robot systems**,”  
+*IEEE Transactions on Robotics*, 33(3), 661–674.  
+[DOI: 10.1109/TRO.2017.2659725](https://doi.org/10.1109/TRO.2017.2659725)
+
+---
+
+## 🛠️ Getting Started
+
+### Requirements
+- MATLAB R2021+  
+- Optimization Toolbox (for `quadprog`)  
+- No additional toolboxes required
+
+### Running the Simulation
+
+```matlab
 
 # Usage:
 To run the simulation, open "Main.m" and modify the parameter "n" to set the number of agents.
