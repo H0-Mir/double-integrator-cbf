@@ -4,7 +4,7 @@ This repository contains a MATLAB simulation of multiple agents modeled as **dou
 
 ---
 
-## 📌 Problem Description
+## Problem Description
 
 Each agent \(i\) is modeled by the following second-order dynamics:
 
@@ -23,9 +23,7 @@ $$
 $$
 
 State-space representation:
-
-$$
-	\begin{bmatrix}\dot{\mathbf{p}}_i \\ \dot{\mathbf{v}}_i \end{bmatrix}
+$$\begin{bmatrix}\dot{\mathbf{p}}_i \\ \dot{\mathbf{v}}_i \end{bmatrix}
 	=
 	\begin{bmatrix}
 		\mathbf{0}  & \mathbf{I} \\
@@ -36,11 +34,11 @@ $$
 		\mathbf{0} \\
 		\mathbf{I}
 	\end{bmatrix}
-	\mathbf{u}_i
-$$
+	\mathbf{u}_i$$
+
 ---
 
-## 🎯 Control Design
+## Control Design
 
 ### 1. Nominal Feedback Controller
 
