@@ -12,10 +12,9 @@ $$
 \ddot{\mathbf{p}}_i = \mathbf{u}_i
 $$
 
-$\mathbf{p}_i \in \mathbb{R}^2$
-: position  
-- \( \mathbf{v}_i \in \mathbb{R}^2 \): velocity  
-- \( \mathbf{u}_i \in \mathbb{R}^2 \): control input (acceleration)  
+- $\mathbf{p}_i \in \mathbb{R}^2$: position  
+- $\mathbf{v}_i \in \mathbb{R}^2$: velocity  
+- $\mathbf{u}_i \in \mathbb{R}^2$: control input (acceleration)  
 
 The state vector is:
 
@@ -26,8 +25,7 @@ $$
 State-space representation:
 
 $$
-\begin{bmatrix}\dot{\mathbf{p}}_i \\ \dot{\mathbf{v}}_i \end{bmatrix}
-=
+\begin{bmatrix}\dot{\mathbf{p}}_i \\ \dot{\mathbf{v}}_i \end{bmatrix}=
 \begin{bmatrix}
 \mathbf{0}  & \mathbf{I} \\
 \mathbf{0}  & \mathbf{0}
