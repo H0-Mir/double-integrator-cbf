@@ -126,8 +126,6 @@ Wang, L., Ames, A. D., & Egerstedt, M. (2017).
 - No additional toolboxes required
 
 ### Running the Simulation
-
-```matlab
-
-# Usage:
 To run the simulation, open "Main.m" and modify the parameter "n" to set the number of agents.
+```matlab
+Main.m
